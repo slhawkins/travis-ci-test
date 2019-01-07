@@ -1,0 +1,17 @@
+matrix:
+  include:
+    - sudo: required
+      services:
+        - docker
+      before_install:
+        - docker build -t docker-react -f Dockerfile.test.react .
+      script:
+        - docker run docker-react npm run test -- --coverage
+
+    - sudo: required
+      services:
+        - docker
+      before_install:
+        - docker build -t docker-python -f Dockerfile.test.python .
+      script:
+        - docker run docker-python pytest
