@@ -10,6 +10,7 @@ setup(name='PWV Travis CI Test',
       description='',
       author='PWV Consultants',
       packages=find_packages('pysrc'),
+      install_requires=['pytest'],
       package_dir={'': 'pysrc'},
       py_modules=[splitext(basename(path))[0] for path in glob('pysrc/*.py')],
      )
