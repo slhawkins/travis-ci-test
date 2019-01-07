@@ -1,17 +1,18 @@
 matrix:
   include:
-    - sudo: required
+    - language: node_js
+      sudo: required
       services:
         - docker
       before_install:
         - docker build -t docker-react -f Dockerfile.test.react .
       script:
         - docker run docker-react npm run test -- --coverage
-
-    - sudo: required
+    - language: python
+      sudo: required
       services:
         - docker
       before_install:
         - docker build -t docker-python -f Dockerfile.test.python .
       script:
-        - docker run docker-python pytest
+        - docker run docker-python python -m pytest tests

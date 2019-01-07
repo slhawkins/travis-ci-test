@@ -3,5 +3,4 @@ FROM python:3.6
 COPY . /project
 WORKDIR /project
 RUN pip install -e .
-
-CMD ["project", "run"]
+# CMD ["project", "run"]
