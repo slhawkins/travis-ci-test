@@ -1,6 +1,6 @@
 matrix:
   include:
-    - language: node_js
+    - language: generic
       sudo: required
       services:
         - docker
@@ -8,7 +8,7 @@ matrix:
         - docker build -t docker-react -f Dockerfile.test.react .
       script:
         - docker run docker-react npm run test -- --coverage
-    - language: python
+    - language: generic
       sudo: required
       services:
         - docker
@@ -16,3 +16,10 @@ matrix:
         - docker build -t docker-python -f Dockerfile.test.python .
       script:
         - docker run docker-python python -m pytest tests
+    - language: generic
+      sudo: required
+      services: docker
+      before_install:
+        - docker -v
+      script:
+        - docker-compose run nightwatch

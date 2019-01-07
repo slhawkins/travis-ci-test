@@ -1,0 +1,24 @@
+version: '3.5'
+services:
+  react:
+    build:
+      dockerfile: Dockerfile.test.react
+      context: .
+    ports:
+      - 3000:3000
+  chromedriver:
+    image: blueimp/chromedriver
+    environment:
+      - VNC_ENABLED=true
+      - EXPOSE_X11=true
+    ports:
+      - 5900:5900
+  nightwatch:
+    image: blueimp/nightwatch:0.9
+    depends_on:
+      - chromedriver
+      - react
+    environment:
+      - WAIT_FOR_HOSTS=react:3000 chromedriver:4444 chromedriver:6060
+    volumes:
+      - ./:/home/node
