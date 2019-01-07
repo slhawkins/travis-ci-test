@@ -4,9 +4,7 @@ module.exports = {
   'sample test': function(browser) {
     browser
       .url(browser.launch_url)
-      .waitForElementVisible('#test', 1000)
-      .expect.element('#test')
-      .text.to.equal('');
+      .waitForElementVisible('#test', 8000)
     browser.end();
   }
 };
